@@ -1,5 +1,6 @@
 package com.espogee;
 
+import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,11 +13,15 @@ public class Users {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private LocalDate birthday;
+    @NotNull
     private String email;
+    @NotNull
     private String password;
 
 

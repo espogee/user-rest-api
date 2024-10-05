@@ -22,14 +22,14 @@ public class UserService {
         return em.find(Users.class, id);
     }
 
-    @Transactional
+
     public Users addUser(Users user) {
         em.persist(user);
         return user;
     }
 
     public Users updateUser(Long id, Users user) {
-        Users exUser = em.find(Users.class, id);
+        Users exUser = getUserById(id);
         if (exUser != null) {
             exUser.setFirstName(user.getFirstName());
             exUser.setLastName(user.getLastName());
@@ -39,6 +39,13 @@ public class UserService {
             return em.merge(exUser);
         }
         return null;
+    }
+
+    public void deleteUser(Long id) {
+        Users deletedUser = em.find(Users.class, id);
+        if (deletedUser != null) {
+            em.remove(deletedUser);
+        }
     }
 
 }
